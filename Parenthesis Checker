@@ -1,0 +1,52 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class Parenthesis:
+    def __init__(self):
+        self.top = None
+
+    def __push(self, data):
+        node = Node(data)
+
+        if self.top:
+            node.next = self.top
+        self.top = node
+
+    def __pop(self):
+        if self.top:
+            self.top = self.top.next
+
+        else:
+            print("Stacks is empty")
+
+    def __peek(self):
+        return None if self.top is None else self.top.data
+
+    def isBalance(self, string):
+        for i in string:
+            if i in "({[":
+                self.__push(i)
+
+            if i in ")]}":
+                if self.__peek() == '(' and i == ')' or self.__peek() == '{' and i == '}' or self.__peek() == '[' and i == ']':
+                    pair = True
+                    self.__pop()
+                else:
+                    pair = False
+
+        if pair is True:
+            if self.__peek():
+                return False
+            else:
+                return True
+        else:
+            return False
+
+
+P = Parenthesis()
+
+string = input("Enter a string: ").replace(' ', '')
+print(P.isBalance(string))

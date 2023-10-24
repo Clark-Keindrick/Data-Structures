@@ -1,0 +1,64 @@
+class Node:  # create a node for stacks
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class Palindrome:  # class for palindrome
+    l = []   # declare an empty variable list
+
+    def __init__(self):  # initiate self head
+        self.top = None
+
+    def push(self, data):   # methods to push data to the stacks
+        node = Node(data)
+
+        if self.top:
+            node.next = self.top
+        self.top = node
+
+    def pop(self):  # method to delete data from the stacks
+        if self.top:
+            self.top = self.top.next
+
+        else:
+            print("Stacks is empty")
+
+    def isPalindrome(self):  # methods to check if the data entered is palindrome or not
+        current = self.top
+
+        for i in Palindrome.l:
+            if current.data == i:
+                s.pop()
+                current = current.next
+            else:
+                break
+
+        if self.top:
+            print("Not Palindrome")
+        else:
+            print("Palindrome")
+
+    def Display(self):  # methods to display the all the data in the stacks
+        current = self.top
+
+        while current:
+            print(current.data)
+            print()
+            current = current.next
+
+
+s = Palindrome()  # object instantiation
+
+word = input("Enter a word: ").upper()  # enter a palindrome word
+
+j = 0
+
+for i in word:  # pushing every letter from the word you entered to the stacks
+    s.push(i)
+    s.l.insert(j, i)  # inserting every letter from the word you entered to the list variable
+    j += 1
+
+s.Display()
+s.isPalindrome()
+
